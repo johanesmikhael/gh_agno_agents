@@ -11,7 +11,7 @@ Clone or pull the repo to your machine:
 ## What you need
 - Python 3.10+ installed (check with `python --version`).
 - An OpenAI API key.
-- Rhino + Grasshopper installed.
+- Rhino8 installed.
 - A terminal (macOS Terminal, Windows PowerShell).
 
 ## 1) Get the backend running

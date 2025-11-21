@@ -1,0 +1,18 @@
+# Copy to .env and fill in your own secrets and overrides.
+
+# --- API keys ---
+OPENAI_API_KEY=your-openai-api-key
+
+# --- Models ---
+OPENAI_MODEL=gpt-4.1
+OPENAI_MODEL_REASON=gpt-5-mini
+OPENAI_MODEL_EVAL=gpt-4.1-mini
+OPENAI_MODEL_FAST=gpt-4.1-nano
+
+# --- Knowledge 
+LANCEDB_URI=lancedb
+LANCEDB_TABLE=facade
+
+# --- DB
+DB_PATH=agents_db/json_db
+CONTENTDB__PATH=agents_db/knowledge_db

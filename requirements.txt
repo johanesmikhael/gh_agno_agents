@@ -1,0 +1,11 @@
+agno
+fastapi
+lancedb
+numpy
+pandas
+pydantic
+tantivy
+python-dotenv
+openai
+pyarrow
+uvicorn

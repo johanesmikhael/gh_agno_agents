@@ -5,7 +5,7 @@ Backend + Grasshopper user objects for running Agno agents. Follow the steps bel
 
 ## Get the code
 Clone or pull the repo to your machine:
-- First time: `git clone <repo-url> && cd gh_agno_agents`
+- First time: `git clone https://github.com/johanesmikhael/gh_agno_agents.git && cd gh_agno_agents`
 - Already have it: `git pull` inside the repo folder.
 
 ## What you need

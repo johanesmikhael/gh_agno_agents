@@ -4,8 +4,6 @@ from_rhino.py
 Conversion helpers between RhinoCommon types and geometry.py Pydantic models.
 This reverses rhino_converters.py, creating serializable Pydantic geometry
 instances from live Rhino.Geometry objects.
-
-Author: Mikhael Johanes
 """
 
 import importlib

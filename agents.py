@@ -1,3 +1,10 @@
+"""Agents that coordinate façade grid generation, evaluation, and retrieval-backed design.
+
+This module wires multiple `agno` agents together, patches session handling for robustness,
+and defines structured schemas for façade workflows. Environment variables configure the
+OpenAI models, JSON databases, and LanceDB knowledge base connections.
+"""
+
 import os
 from agno.agent import Agent
 from agno.db.json import JsonDb
@@ -22,8 +29,8 @@ from dotenv import load_dotenv
 # loads .env once (idempotent)
 load_dotenv()
 
-# Patch SessionSchema.from_dict to tolerate sessions with null session_data
 def _safe_session_from_dict(cls, session):
+    """Fallback `SessionSchema.from_dict` that tolerates missing or malformed session data."""
     session_data = session.get("session_data") or {}
     if not isinstance(session_data, dict):
         session_data = {}
@@ -155,12 +162,14 @@ eval_agent = Agent(
     
 # --- Schema Definitions ---
 class FacadeElement(BaseModel):
+    """Single façade element or grid panel assignment with descriptive intent."""
     id: str = Field(..., description="Unique identifier of the façade element or grid panel.")
     type: str = Field(..., description="Assigned façade element type, e.g. glazing, shading, vent, opaque panel, PV panel, etc.")
     description: str = Field(..., description="Concise conceptual description expressing material, function, and aesthetic intent.")
 
 
 class FacadeElementList(BaseModel):
+    """Collection of façade elements along with an overarching composition concept."""
     concept: str = Field(..., description="Overall façade concept summarizing composition, performance logic, and adaptive strategy.")
     facade: List[FacadeElement] = Field(
         default_factory=list,
@@ -168,11 +177,13 @@ class FacadeElementList(BaseModel):
     )
 
 class FacadeTypology(BaseModel):
+    """Grouping of façade elements that share a typological logic or treatment."""
     typology: str = Field(..., description="Facade typology name or category, e.g. glazing, shading, vent, opaque panel, PV panel, etc.")
     concept: str = Field(..., description="Concise conceptual description explaining the material logic, function, or aesthetic intent of this typology.")
     elements: List[str] = Field(..., description="List of façade element or grid panel IDs belonging to this typology.")
 
 class FacadeTypologyList(BaseModel):
+    """List of façade typologies plus a high-level narrative."""
     concept: str = Field(
         ..., 
         description="Overall façade concept summarizing composition, performance logic, and adaptive strategy."
@@ -230,4 +241,3 @@ agent_os = AgentOS(agents=[init_agent,grid_agent, eval_agent,facade_design_agent
                    knowledge=[knowledge])
 # Get the FastAPI app for the AgentOS
 app = agent_os.get_app()
-

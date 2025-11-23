@@ -240,7 +240,7 @@ facade_design_agent = Agent(
 
 
 # Create the AgentOS
-agent_os = AgentOS(agents=[init_agent,grid_agent, eval_agent,facade_design_agent, knowledge_agent, image_agent],
+agent_os = AgentOS(agents=[init_agent,grid_agent, eval_agent,facade_design_agent, knowledge_agent],
                    knowledge=[knowledge])
 # Get the FastAPI app for the AgentOS
 app = agent_os.get_app()

@@ -20,6 +20,7 @@ from agno.knowledge.knowledge import Knowledge
 from agno.vectordb.search import SearchType
 from agno.vectordb.lancedb import LanceDb
 from datetime import datetime, timezone
+from agno.tools.openai import OpenAITools
 
 
 
@@ -50,7 +51,7 @@ api_key = os.getenv("OPENAI_API_KEY", "")
 open_ai_model = os.getenv("OPENAI_MODEL", "")
 open_ai_model_eval = os.getenv("OPENAI_MODEL_EVAL", "")
 open_ai_model_fast = os.getenv("OPENAI_MODEL_FAST", "")
-open_ai_model_reson = os.getenv("OPENAI_MODEL_REASON", "")
+open_ai_model_reason = os.getenv("OPENAI_MODEL_REASON", "")
 
 # db = SqliteDb("agents.db")
 # db = InMemoryDb()
@@ -230,14 +231,16 @@ facade_design_agent = Agent(
     ),
     # knowledge=knowledge,
     # search_knowledge=True,
-    model=OpenAIResponses(id=open_ai_model_reson, api_key=api_key),
+    model=OpenAIResponses(id=open_ai_model_reason, api_key=api_key),
     output_schema=FacadeTypologyList,
     db=db,
     markdown=False
 )
 
+
+
 # Create the AgentOS
-agent_os = AgentOS(agents=[init_agent,grid_agent, eval_agent,facade_design_agent, knowledge_agent],
+agent_os = AgentOS(agents=[init_agent,grid_agent, eval_agent,facade_design_agent, knowledge_agent, image_agent],
                    knowledge=[knowledge])
 # Get the FastAPI app for the AgentOS
 app = agent_os.get_app()

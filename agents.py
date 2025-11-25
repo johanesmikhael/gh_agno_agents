@@ -132,7 +132,7 @@ grid_agent = Agent(
         "Return your result as a structured `Grid` model, containing all lines with clear spatial logic."
     ),
     # model=OpenAIResponses(id="gpt-4.1", api_key=api_key),
-    model=OpenAIResponses(id=open_ai_model, api_key=api_key),
+    model=OpenAIResponses(id=open_ai_model_eval, api_key=api_key),
     # model=DeepSeek(id="deepseek-chat", api_key=deepseek_api),
     # model=Ollama(id="qwen3:32b"),
     # add_history_to_context=True,
@@ -151,7 +151,7 @@ class Evaluation(BaseModel):
 eval_agent = Agent(
     name="Evaluation Agent",
     description="Evaluates the resulting facade panels",
-    model=OpenAIResponses(id=open_ai_model, api_key=api_key),
+    model=OpenAIResponses(id=open_ai_model_eval, api_key=api_key),
     # model=DeepSeek(id="deepseek-chat", api_key=deepseek_api),
     # add_history_to_context=True,
     output_schema=Evaluation,

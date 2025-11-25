@@ -29,7 +29,7 @@ Clone or pull the repo to your machine:
    - `mkdir -p agents_db/json_db agents_db/knowledge_db lancedb`
    - This is safe to run even if they already exist; the code assumes the paths are present and may not create them for you.
 5. **Start the API (development mode)**
-   - From the repo root: `fastapi dev agents.py --host 0.0.0.0 --port 8000`
+   - From the repo root: `fastapi dev agents.py`
    - Leave this terminal running.
 6. **Check it works**
    - Open `http://localhost:8000/docs` in a browser. You should see FastAPI docs.
